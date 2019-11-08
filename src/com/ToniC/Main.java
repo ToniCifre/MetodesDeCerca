@@ -34,9 +34,12 @@ public class Main {
         NinePuzzle start = new NinePuzzle(new int[]{8, 6, 7, 2, 5, 4, 3, 0, 1});
         NinePuzzle goal = new NinePuzzle(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 0});
 
-//        new AlgorismesNoInformats().BFS(start,goal,32);
-//        new AlgorismesNoInformats().DFS(start,goal,32);
-        new AlgorismesInformats().HillClimbing(start,goal,32);
+        // Algorismes de cerca
+//        new AlgorismesNoInformats().BFS(start,goal);
+//        new AlgorismesNoInformats().DFS(start,goal);
+//        new AlgorismesInformats().HillClimbing(start,goal);
+//        new AlgorismesInformats().BestFirst(start,goal);
+        new AlgorismesInformats().N_Profunditat(start, goal, 5);
     }
 
 }

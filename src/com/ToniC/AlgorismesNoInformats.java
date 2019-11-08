@@ -9,7 +9,7 @@ import java.util.List;
 public class AlgorismesNoInformats extends NinePuzleCommons {
 
 
-    ArrayList<NinePuzzle> BFS(NinePuzzle start, NinePuzzle goal, int max_depth){
+    ArrayList<NinePuzzle> BFS(NinePuzzle start, NinePuzzle goal){
         NinePuzzle.resetIds();
         int edge = 0;
 
@@ -26,7 +26,7 @@ public class AlgorismesNoInformats extends NinePuzleCommons {
 
                 NinePuzzle child = parent.clone();
                 child.move(d);
-                if ( child.getDepth() < max_depth && !isCycle(child, parent)) {
+                if (!isCycle(child, parent)) {
                     g.addChild(edge++, parent, child);
                     if (child.isSolution(goal)) {
                         new ShowGraph(g);
@@ -43,7 +43,7 @@ public class AlgorismesNoInformats extends NinePuzleCommons {
     }
 
 
-    ArrayList<NinePuzzle> DFS(NinePuzzle start, NinePuzzle goal, int max_depth){
+    ArrayList<NinePuzzle> DFS(NinePuzzle start, NinePuzzle goal){
         NinePuzzle.resetIds();
         int edge = 0;
 
@@ -63,7 +63,7 @@ public class AlgorismesNoInformats extends NinePuzleCommons {
                 NinePuzzle child = parent.clone();
                 child.move(d);
 
-                if ( child.getDepth() < max_depth && !isCycle(child, parent)) {
+                if ( !isCycle(child, parent)) {
                     g.addChild(edge++, parent, child);
 
                     if (child.isSolution(goal)) {
