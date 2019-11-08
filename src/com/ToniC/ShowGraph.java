@@ -15,6 +15,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Classe dedicada a imprimir el DelegateTree graficament
+ */
 public class ShowGraph {
 
     public ShowGraph(DelegateTree<NinePuzzle, Integer> g) {

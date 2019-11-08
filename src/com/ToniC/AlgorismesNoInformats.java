@@ -74,7 +74,6 @@ public class AlgorismesNoInformats extends NinePuzleCommons {
                     }
                 }
             }
-//            LNO.sort(Comparator.comparingInt(r -> getEuristic(r, goal)));
         }
 
         new ShowGraph(g);

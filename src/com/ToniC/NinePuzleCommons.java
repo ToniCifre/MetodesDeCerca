@@ -46,6 +46,48 @@ class NinePuzleCommons {
         return euristic;
     }
 
+    public int manhattan(NinePuzzle child, NinePuzzle goal) {
+        int count = 0;
+        int expected = 0;
+
+        for (int row = 0; row < child.puzzle.length; row++) {
+            for (int col = 0; col < child.puzzle.length; col++) {
+                int value = child.puzzle[row][col];
+                expected++;
+                if (value != 0 && value != expected) {
+                    count += Math.abs(row
+                            - getRow(goal.puzzle, value))
+                            + Math.abs(col
+                            - getCol(goal.puzzle, value));
+                }
+            }
+        }
+        return count;
+    }
+
+    private int getCol(int[][] a, int value) {
+        for (int[] ints : a) {
+            for (int col = 0; col < ints.length; col++) {
+                if (ints[col] == value) {
+                    return col;
+                }
+            }
+        }
+        return -1;
+    }
+
+    private int getRow(int[][] a, int value) {
+        for (int row = 0; row < a.length; row++) {
+            for (int col = 0; col < a[row].length; col++) {
+                if (a[row][col] == value) {
+                    return row;
+                }
+            }
+        }
+        return -1;
+    }
+
+
     boolean isCycle(NinePuzzle child, NinePuzzle parent) {
         while (parent != null) {
             if (child.isSolution(parent)) {
