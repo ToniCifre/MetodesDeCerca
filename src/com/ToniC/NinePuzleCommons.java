@@ -4,10 +4,18 @@ import edu.uci.ics.jung.graph.DelegateTree;
 
 import java.util.ArrayList;
 
+/**
+ * Fincions que utilitzen els algorismes de cerca
+ */
 class NinePuzleCommons {
 
     DelegateTree<NinePuzzle, Integer> g = null;
 
+    /**
+     * retorna e imprimeix el cami a segir per trobar la solució
+     * @param solution node final igual a la solució
+     * @return L'arrai amb els nodes del cami de la solució
+     */
     ArrayList<NinePuzzle> getCamiSol(NinePuzzle solution){
         if (solution == null) {
             System.out.println("Sense solució.");
@@ -34,6 +42,12 @@ class NinePuzleCommons {
         }
     }
 
+    /**
+     * funció euristica basada en el nombre de caselles desordenades
+     * @param child puzele actual
+     * @param goal puzzle objectiu
+     * @return nombre euristic
+     */
     int getEuristic(NinePuzzle child, NinePuzzle goal){
         int euristic = 0;
         for (int i = 0; i<child.puzzle.length; i++) {
@@ -46,7 +60,13 @@ class NinePuzleCommons {
         return euristic;
     }
 
-    public int manhattan(NinePuzzle child, NinePuzzle goal) {
+    /**
+     * Funció euristica vasada amb la distancia de manhatan
+     * @param child puzele actual
+     * @param goal puzele actual
+     * @return distancia de manhatan
+     */
+    int manhattan(NinePuzzle child, NinePuzzle goal) {
         int count = 0;
         int expected = 0;
 

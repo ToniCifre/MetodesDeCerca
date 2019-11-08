@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author Usuari
+ * @author tonix
  */
 public class NinePuzzle {
     private static int nextId=0;

@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Usuari
+ * @author Toni Cifre Vicens
  */
 public class Main {
 
