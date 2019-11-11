@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class AlgorismesInformats extends NinePuzleCommons {
+public class AlgorismesInformats extends NinePuzleTree {
 
     ArrayList<NinePuzzle> HillClimbing(NinePuzzle start, NinePuzzle goal){
         NinePuzzle.resetIds();
@@ -43,7 +43,7 @@ public class AlgorismesInformats extends NinePuzleCommons {
             if(LF.size()!=0) LNO.add(LF.get(0));
         }
 
-        new ShowGraph(g);
+        drawTree();
         return getCamiSol(null);
     }
 
@@ -80,12 +80,12 @@ public class AlgorismesInformats extends NinePuzleCommons {
             LNO.sort(Comparator.comparingInt(r -> manhattan(r, goal)));
         }
 
-        new ShowGraph(g);
+        drawTree();
         return getCamiSol(null);
     }
 
 
-    ArrayList<NinePuzzle> N_Profunditat(NinePuzzle start, NinePuzzle goal, int listSize){
+    ArrayList<NinePuzzle> N_Profunditat(NinePuzzle start, NinePuzzle goal, int maxListSize){
         NinePuzzle.resetIds();
         int edge = 0;
 
@@ -116,10 +116,48 @@ public class AlgorismesInformats extends NinePuzleCommons {
                 }
             }
             LNO.sort(Comparator.comparingInt(r -> manhattan(r, goal)));
-            LNO = LNO.subList(0, Math.min(LNO.size(), listSize));
+            LNO = LNO.subList(0, Math.min(LNO.size(), maxListSize));
         }
 
-        new ShowGraph(g);
+        drawTree();
+        return getCamiSol(null);
+    }
+
+
+    ArrayList<NinePuzzle> A(NinePuzzle start, NinePuzzle goal){
+        NinePuzzle.resetIds();
+        int edge = 0;
+
+
+        List<NinePuzzle> LNO = new ArrayList<>();
+        LNO.add(start);
+
+        g = new DelegateTree<>();
+        g.addVertex(start);
+
+        while (LNO.size() > 0) {
+            NinePuzzle parent = LNO.remove(0);
+
+            List<Dir> dirs = parent.validMoves();
+            for (Dir d : dirs) {
+
+                NinePuzzle child = parent.clone();
+                child.move(d);
+
+                if ( !isCycle(child, parent)) {
+                    g.addChild(edge++, parent, child);
+                    if (child.isSolution(goal)) {
+                        new ShowGraph(g);
+                        return getCamiSol(child);
+                    } else {
+                        LNO.add(child);
+                    }
+                }
+            }
+            LNO.sort(Comparator.comparingInt(r -> manhattan(r, goal)+r.getDepth()));
+        }
+
+        drawTree();
         return getCamiSol(null);
     }
 

@@ -3,10 +3,9 @@ package com.ToniC;
 import edu.uci.ics.jung.graph.DelegateTree;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-public class AlgorismesNoInformats extends NinePuzleCommons {
+public class AlgorismesNoInformats extends NinePuzleTree {
 
 
     ArrayList<NinePuzzle> BFS(NinePuzzle start, NinePuzzle goal){
@@ -38,7 +37,7 @@ public class AlgorismesNoInformats extends NinePuzleCommons {
             }
         }
 
-        new ShowGraph(g);
+        drawTree();
         return getCamiSol(null);
     }
 
@@ -76,7 +75,7 @@ public class AlgorismesNoInformats extends NinePuzleCommons {
             }
         }
 
-        new ShowGraph(g);
+        drawTree();
         return getCamiSol(null);
     }
 

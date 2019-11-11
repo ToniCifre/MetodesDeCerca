@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Fincions que utilitzen els algorismes de cerca
  */
-class NinePuzleCommons {
+class NinePuzleTree {
 
     DelegateTree<NinePuzzle, Integer> g = null;
 
@@ -68,13 +68,11 @@ class NinePuzleCommons {
      */
     int manhattan(NinePuzzle child, NinePuzzle goal) {
         int count = 0;
-        int expected = 0;
 
         for (int row = 0; row < child.puzzle.length; row++) {
-            for (int col = 0; col < child.puzzle.length; col++) {
+            for (int col = 0; col < child.puzzle[row].length; col++) {
                 int value = child.puzzle[row][col];
-                expected++;
-                if (value != 0 && value != expected) {
+                if (value != 0) {
                     count += Math.abs(row
                             - getRow(goal.puzzle, value))
                             + Math.abs(col
@@ -82,6 +80,8 @@ class NinePuzleCommons {
                 }
             }
         }
+
+        if(count>=22) return 99999;
         return count;
     }
 
@@ -107,7 +107,6 @@ class NinePuzleCommons {
         return -1;
     }
 
-
     boolean isCycle(NinePuzzle child, NinePuzzle parent) {
         while (parent != null) {
             if (child.isSolution(parent)) {
@@ -116,5 +115,9 @@ class NinePuzleCommons {
             parent = g.getParent(parent);
         }
         return false;
+    }
+
+    void drawTree(){
+        new ShowGraph(g);
     }
 }
